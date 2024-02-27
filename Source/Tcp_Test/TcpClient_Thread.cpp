@@ -53,10 +53,7 @@ namespace net
 		isPause = isPause;
 	}
 
-	bool TcpClient::connectServer()
-	{
-		return true;
-	}
+
 
 	void TcpClient::run()
 	{

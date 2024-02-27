@@ -61,7 +61,7 @@ namespace net
 		void run();
 		void stop();
 		void setThread(bool ispause);
-		 void runClient(uint32 sid, char* ip, int32 port) ;
+		 void runClient(int32 sid, FString ip, int32 port) ;
 		 bool connectServer() ;
 		 void disconnectServer(const int32 errcode,FString err) ;
 
