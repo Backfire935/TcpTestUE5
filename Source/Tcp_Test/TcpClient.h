@@ -1,23 +1,42 @@
 #ifndef __TCPCLIENT_H
 #define  __TCPCLIENT_H
 
+#include"IDefine.h"
+#include "HAL/Runnable.h"
+#include"HAL/RunnableThread.h"
 #include"Sockets.h"
 #include"SocketSubsystem.h"
-#include"IDefine.h"
+
 namespace net
 {
 	class TcpClient;
 	typedef void(*TCPCLIENTNOTIFY_EVENT)(TcpClient* tcp, const int32 code);
+
+	class TcpClient_Thread : public FRunnable
+	{
+	public:
+		TcpClient_Thread(TcpClient* c);//构造函数
+		virtual ~TcpClient_Thread();
+		virtual uint32 Run();
+		virtual void Exit();
+		//virtual void Stop();
+		//virtual bool Init();
+
+		void StopThread();
+		FRunnableThread * thread;
+		TcpClient* m_tcp;
+	};
 	
 	class TcpClient
 	{
+
 		bool isFirstConnect;//判断是否是第一次连接
 		bool isRunning;//线程中判断是否正在运行服务器
 		bool isPause;//是否暂停线程
 
 		FSocket*		socketfd;
 		S_SERVER_BASE	m_data;
-		//std::shared_ptr<std::thread> m_workthread;//客户端用一个线程就可以
+		TcpClient_Thread* m_workthread;//客户端用一个线程就可以
 
 		TCPCLIENTNOTIFY_EVENT	onAcceptEvent;//接受连接
 		TCPCLIENTNOTIFY_EVENT	onSecureEvent;//安全连接
