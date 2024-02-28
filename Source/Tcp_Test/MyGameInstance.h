@@ -13,5 +13,13 @@ UCLASS()
 class TCP_TEST_API UMyGameInstance : public UGameInstance
 {
 	GENERATED_BODY()
+
+public:
+
+	UFUNCTION(BlueprintCallable, Category = "MyEngine")
+	int AppInitGameInstance();
 	
+	int32 GetTimeSeconds();
 };
+
+extern UMyGameInstance* __AppGameInstance;
