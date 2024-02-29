@@ -35,6 +35,8 @@ public:
 	void onExcept(int errcode);
 	
 	int32 GetTimeSeconds();
+
+	virtual void Shutdown();
 };
 
 extern UMyGameInstance* __AppGameInstance;

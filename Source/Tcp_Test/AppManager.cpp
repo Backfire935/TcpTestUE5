@@ -84,6 +84,7 @@ namespace app
 		
 			__TcpClient->runClient(0, "127.0.0.1",13550);//连接服务器
 			__TcpClient->getData()->ID = 0;//连接的时候去连接哪个服务器ID
+
 		
 	}
 
@@ -94,6 +95,8 @@ namespace app
 			__AppManager = new AppManager();
 			__AppManager->init();
 		}
+
+		app::__TcpClient->setThread(false);//设置线程不暂停
 		return 0;
 	}
 }
