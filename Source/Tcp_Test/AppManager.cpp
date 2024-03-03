@@ -56,10 +56,10 @@ namespace app
 	{
 		if(func::__ClientInfo == nullptr) func::__ClientInfo = new func::ConfigXML();
 
-		func::__ClientInfo->SafeCode = "testcode";
+		func::__ClientInfo->SafeCode = "test";
 		func::__ClientInfo->Head[0] = 'D';
 		func::__ClientInfo->Head[1] = 'E';
-		func::__ClientInfo->RCode = 30;
+		func::__ClientInfo->RCode = 97;
 		func::__ClientInfo->Version = 20231028;
 		func::__ClientInfo->ReceOne = 8*1024;
 		func::__ClientInfo->ReceMax = 256*1024;

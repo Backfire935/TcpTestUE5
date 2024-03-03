@@ -141,7 +141,7 @@
         //满足这四个条件就可以封包了
         if(c->state >= func::C_Connect &&
             c->is_Sending == false &&
-            socketfd == nullptr && 
+            socketfd != nullptr && 
             c->send_TempTail + 8 <= func::__ClientInfo->SendMax )
         {
             //开始封包

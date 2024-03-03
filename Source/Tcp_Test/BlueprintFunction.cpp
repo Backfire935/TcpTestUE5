@@ -21,7 +21,7 @@ int32 UBlueprintFunction::disConnect()
 	return -1;
 }
 
-int32 UBlueprintFunction::isSecurity()
+bool UBlueprintFunction::isSecurity()
 {
 	if(app::__TcpClient == nullptr) return false;
 	uint8 state = app::__TcpClient->getData()->state;
@@ -100,6 +100,16 @@ FString UBlueprintFunction::read_FString()
 	return value;//返回数据
 }
 
+//读取自定义玩家数据结构
+FPlayerBase UBlueprintFunction::read_FPlayerBase()
+{
+	FPlayerBase data;
+	app::__TcpClient->read(&data, 48);
+	
+	data.nick =  read_FString_len(20);//读取字符串
+	return  data;
+}
+
 //封包
 void UBlueprintFunction::send_begin(int32 cmd)
 {
@@ -155,7 +165,7 @@ void UBlueprintFunction::send_FString_len(FString value, int32 len)
 	int size = value.GetCharArray().Num();//获取长度
 	if(size > len) size = len;//如果长度大于len，设置为len
 	app ::__TcpClient->sss(cc, size);//发送数据
-	if(size == len) return;//如果相等，直接返回
+	if(size <= len) return;//如果相等，直接返回
 
 	int a = size -len;//计算差值
 	uint8* cc2 = (uint8*)FMemory::Malloc(a);//分配内存

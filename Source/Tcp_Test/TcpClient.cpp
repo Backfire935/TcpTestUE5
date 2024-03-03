@@ -113,7 +113,7 @@ namespace net
 	{
 		if(m_data.state >= func::C_Connect) return false;
 
-		initSocket();
+		initSocket(); 
 		if(socketfd == nullptr) return false;
 		
 		//FIPv4Address是一个IPV4地址类，FIPv4Address::Parse是一个静态函数，用来解析IP地址
@@ -131,7 +131,7 @@ namespace net
 			socketfd->SetNonBlocking();//设置为非阻塞
 			m_data.state = func::C_Connect;//设置状态为连接
 			m_data.time_Heart = 0;//设置心跳时间为0
-			if(onAcceptEvent != nullptr) onAcceptEvent(this, 0);//如果接受连接事件不为空，调用接受连接事件
+			//if(onAcceptEvent != nullptr) onAcceptEvent(this, 0);//如果接受连接事件不为空，调用接受连接事件
 			return true;
 		}
 		

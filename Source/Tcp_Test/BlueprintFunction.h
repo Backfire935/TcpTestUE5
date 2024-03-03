@@ -6,6 +6,38 @@
 #include "Kismet/BlueprintFunctionLibrary.h"
 #include "BlueprintFunction.generated.h"
 
+#pragma  pack(push,packing)
+#pragma  pack(1)
+
+USTRUCT(BlueprintType)
+struct FPlayerBase
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="MyEngine")
+	int32  memid;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="MyEngine")
+	int32 socketfd;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="MyEngine")
+	int32 state;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="MyEngine")
+	int32 curhp;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="MyEngine")
+	int32 maxhp;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="MyEngine")
+	float speed;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="MyEngine")
+	FVector pos;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="MyEngine")
+	FRotator rot;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="MyEngine")
+	FString nick;
+
+};
+#pragma pack(pop,packing)
+
 /**
  * 
  */
@@ -21,35 +53,38 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "MyEngine")
 	static int32 disConnect();
 
-	UFUNCTION(BlueprintCallable, Category = "MyEngine")
-	static int32 isSecurity();
+	UFUNCTION(BlueprintCallable,BlueprintPure, Category = "MyEngine")
+	static bool isSecurity();
 
-	UFUNCTION(BlueprintCallable, Category = "MyEngine")
+	UFUNCTION(BlueprintCallable,BlueprintPure, Category = "MyEngine")
    static int32 read_int8();
 
-	UFUNCTION(BlueprintCallable, Category = "MyEngine")
+	UFUNCTION(BlueprintCallable,BlueprintPure, Category = "MyEngine")
 	static int32 read_int16();
 
-	UFUNCTION(BlueprintCallable, Category = "MyEngine")
+	UFUNCTION(BlueprintCallable,BlueprintPure, Category = "MyEngine")
        static int32 read_int32();
 
-	UFUNCTION(BlueprintCallable, Category = "MyEngine")
+	UFUNCTION(BlueprintCallable,BlueprintPure, Category = "MyEngine")
 	static float read_float();
 
-	UFUNCTION(BlueprintCallable, Category = "MyEngine")
+	UFUNCTION(BlueprintCallable,BlueprintPure, Category = "MyEngine")
 	static bool read_bool();
 
-	UFUNCTION(BlueprintCallable, Category = "MyEngine")
+	UFUNCTION(BlueprintCallable,BlueprintPure, Category = "MyEngine")
 	static FVector read_FVector();
 
-	UFUNCTION(BlueprintCallable, Category = "MyEngine")
+	UFUNCTION(BlueprintCallable,BlueprintPure, Category = "MyEngine")
 	static FRotator read_FRotator();
 
-	UFUNCTION(BlueprintCallable, Category = "MyEngine")
+	UFUNCTION(BlueprintCallable,BlueprintPure, Category = "MyEngine")
 	static FString read_FString_len(int32 len);
 
-	UFUNCTION(BlueprintCallable, Category = "MyEngine")
+	UFUNCTION(BlueprintCallable,BlueprintPure, Category = "MyEngine")
 	static FString read_FString();
+
+	UFUNCTION(BlueprintCallable,BlueprintPure, Category = "MyEngine")
+	static FPlayerBase read_FPlayerBase();//
 
 	UFUNCTION(BlueprintCallable, Category = "MyEngine")
 	static void send_begin(int32 cmd);
