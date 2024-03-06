@@ -15,7 +15,7 @@ namespace net
 	class TcpClient_Thread : public FRunnable
 	{
 	public:
-		TcpClient_Thread(TcpClient* c);//¹¹Ôìº¯Êı
+		TcpClient_Thread(TcpClient* c);//æ„é€ å‡½æ•°
 		virtual ~TcpClient_Thread();
 		virtual uint32 Run();
 		virtual void Exit();
@@ -30,27 +30,27 @@ namespace net
 	class TcpClient
 	{
 
-		bool isFirstConnect;//ÅĞ¶ÏÊÇ·ñÊÇµÚÒ»´ÎÁ¬½Ó
-		bool isRunning;//Ïß³ÌÖĞÅĞ¶ÏÊÇ·ñÕıÔÚÔËĞĞ·şÎñÆ÷
-		bool isPause;//ÊÇ·ñÔİÍ£Ïß³Ì
+		bool isFirstConnect;//åˆ¤æ–­æ˜¯å¦æ˜¯ç¬¬ä¸€æ¬¡è¿æ¥
+		bool isRunning;//çº¿ç¨‹ä¸­åˆ¤æ–­æ˜¯å¦æ­£åœ¨è¿è¡ŒæœåŠ¡å™¨
+		bool isPause;//æ˜¯å¦æš‚åœçº¿ç¨‹
 
 		FSocket*		socketfd;
 		S_SERVER_BASE	m_data;
-		TcpClient_Thread* m_workthread;//¿Í»§¶ËÓÃÒ»¸öÏß³Ì¾Í¿ÉÒÔ
+		TcpClient_Thread* m_workthread;//å®¢æˆ·ç«¯ç”¨ä¸€ä¸ªçº¿ç¨‹å°±å¯ä»¥
 
-		TCPCLIENTNOTIFY_EVENT	onAcceptEvent;//½ÓÊÜÁ¬½Ó
-		TCPCLIENTNOTIFY_EVENT	onSecureEvent;//°²È«Á¬½Ó
-		TCPCLIENTNOTIFY_EVENT	onDisconnectEvent;//Ê§È¥Á¬½Ó
-		TCPCLIENTNOTIFY_EVENT	onExceptEvent;//Òì³£Á¬½Ó
-		TCPCLIENTNOTIFY_EVENT	onCommand;//ÍĞ¹Ü
+		TCPCLIENTNOTIFY_EVENT	onAcceptEvent;//æ¥å—è¿æ¥
+		TCPCLIENTNOTIFY_EVENT	onSecureEvent;//å®‰å…¨è¿æ¥
+		TCPCLIENTNOTIFY_EVENT	onDisconnectEvent;//å¤±å»è¿æ¥
+		TCPCLIENTNOTIFY_EVENT	onExceptEvent;//å¼‚å¸¸è¿æ¥
+		TCPCLIENTNOTIFY_EVENT	onCommand;//æ‰˜ç®¡
 
 		int32		initSocket();
 
-		int32		onRecv();//½ÓÊÕÊı¾İ
-		int32		onSend();//·¢ËÍÊı¾İ
+		int32		onRecv();//æ¥æ”¶æ•°æ®
+		int32		onSend();//å‘é€æ•°æ®
 
-		void		onHeart();//¿Í»§¶Ë»á²»Í£µÄ¸ø·şÎñ¶Ë·¢ËÍĞÄÌø°ü
-		void		parseCommand(uint16 cmd);//½âÎöÏûÏ¢ÌåÄÚÈİ
+		void		onHeart();//å®¢æˆ·ç«¯ä¼šä¸åœçš„ç»™æœåŠ¡ç«¯å‘é€å¿ƒè·³åŒ…
+		void		parseCommand(uint16 cmd);//è§£ææ¶ˆæ¯ä½“å†…å®¹
 		
 
 	public:
@@ -65,7 +65,7 @@ namespace net
 		 bool connectServer() ;
 		 void disconnectServer(const int32 errcode,FString err) ;
 
-		 void begin(const uint16 cmd) ;// Íæ¼ÒÊı¾İË÷ÒıÏÂ±ê ºÍ Í·Ö¸Áî
+		 void begin(const uint16 cmd) ;// ç©å®¶æ•°æ®ç´¢å¼•ä¸‹æ ‡ å’Œ å¤´æŒ‡ä»¤
 		 void end() ;
 
 		 void sss(const int8 v) ;
@@ -104,10 +104,10 @@ namespace net
 		 void parseCommand() ;
 
 		 void setOnConnect(TCPCLIENTNOTIFY_EVENT event) ;
-		 void setOnSecure(TCPCLIENTNOTIFY_EVENT event) ;//°²È«Á¬½Ó
-		 void setOnDisConnect(TCPCLIENTNOTIFY_EVENT event) ;//Ê§È¥Á¬½Ó
-		 void setOnExcept(TCPCLIENTNOTIFY_EVENT event) ;//Òì³£
-		void setOnCommand(TCPCLIENTNOTIFY_EVENT event) ;//×¢²áÊÂ¼ş
+		 void setOnSecure(TCPCLIENTNOTIFY_EVENT event) ;//å®‰å…¨è¿æ¥
+		 void setOnDisConnect(TCPCLIENTNOTIFY_EVENT event) ;//å¤±å»è¿æ¥
+		 void setOnExcept(TCPCLIENTNOTIFY_EVENT event) ;//å¼‚å¸¸
+		void setOnCommand(TCPCLIENTNOTIFY_EVENT event) ;//æ³¨å†Œäº‹ä»¶
 	};
 
 

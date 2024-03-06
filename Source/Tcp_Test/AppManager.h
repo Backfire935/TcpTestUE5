@@ -16,7 +16,7 @@ namespace app
 	};
 
 	extern int run();
-	extern void onUpdate();//²»Í£µÄ¼ì²éÁ¬½Ó£¬½âÎöÖ¸Áî,²»Í£µÄÍ¶µİÊı¾İ
+	extern void onUpdate();//ä¸åœçš„æ£€æŸ¥è¿æ¥ï¼Œè§£ææŒ‡ä»¤,ä¸åœçš„æŠ•é€’æ•°æ®
 	extern net::TcpClient* __TcpClient;
 
 }

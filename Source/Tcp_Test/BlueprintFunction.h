@@ -90,7 +90,7 @@ public:
 	static void send_begin(int32 cmd);
 
 	UFUNCTION(BlueprintCallable, Category = "MyEngine")
-	static void send_end(int32 cmd);
+	static void send_end();
 
 	UFUNCTION(BlueprintCallable, Category = "MyEngine")
 	static void send_int8(int32 value);

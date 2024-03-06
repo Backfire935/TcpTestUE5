@@ -80,43 +80,43 @@ FRotator UBlueprintFunction::read_FRotator()
 
 FString UBlueprintFunction::read_FString_len(int32 len)
 {
-	uint8* cc = (uint8*)FMemory::Malloc(len);//·ÖÅäÄÚ´æ
-	app::__TcpClient->read(cc, len);//¶ÁÈ¡Êý¾Ý
-	FString value = UTF8_TO_TCHAR(cc);//×ª»»³ÉFString
-	FMemory::Free(cc);//ÊÍ·ÅÄÚ´æ
+	uint8* cc = (uint8*)FMemory::Malloc(len);//ï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½
+	app::__TcpClient->read(cc, len);//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½
+	FString value = UTF8_TO_TCHAR(cc);//×ªï¿½ï¿½ï¿½ï¿½FString
+	FMemory::Free(cc);//ï¿½Í·ï¿½ï¿½Ú´ï¿½
 	return value;
 }
 
 FString UBlueprintFunction::read_FString()
 {
 	int len = 0;
-	app::__TcpClient->read(len);//¶ÁÈ¡³¤¶È
-	if(len < 1 || len >1024*1024*5)return "";//Èç¹û³¤¶ÈÐ¡ÓÚ1»òÕß´óÓÚ5M£¬·µ»Ø¿Õ
+	app::__TcpClient->read(len);//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½
+	if(len < 1 || len >1024*1024*5)return "";//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½1ï¿½ï¿½ï¿½ß´ï¿½ï¿½ï¿½5Mï¿½ï¿½ï¿½ï¿½ï¿½Ø¿ï¿½
 	
-	uint8* cc = (uint8*)FMemory::Malloc(len);//·ÖÅäÄÚ´æ
-	app::__TcpClient->read(cc, len);//¶ÁÈ¡Êý¾Ý
-	FString value = UTF8_TO_TCHAR(cc);//×ª»»³ÉFString
-	FMemory::Free(cc);//ÊÍ·ÅÄÚ´æ
-	return value;//·µ»ØÊý¾Ý
+	uint8* cc = (uint8*)FMemory::Malloc(len);//ï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½
+	app::__TcpClient->read(cc, len);//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½
+	FString value = UTF8_TO_TCHAR(cc);//×ªï¿½ï¿½ï¿½ï¿½FString
+	FMemory::Free(cc);//ï¿½Í·ï¿½ï¿½Ú´ï¿½
+	return value;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 }
 
-//¶ÁÈ¡×Ô¶¨ÒåÍæ¼ÒÊý¾Ý½á¹¹
+//ï¿½ï¿½È¡ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý½á¹¹
 FPlayerBase UBlueprintFunction::read_FPlayerBase()
 {
 	FPlayerBase data;
 	app::__TcpClient->read(&data, 48);
 	
-	data.nick =  read_FString_len(20);//¶ÁÈ¡×Ö·û´®
+	data.nick =  read_FString_len(20);//ï¿½ï¿½È¡ï¿½Ö·ï¿½ï¿½ï¿½
 	return  data;
 }
 
-//·â°ü
+//ï¿½ï¿½ï¿½
 void UBlueprintFunction::send_begin(int32 cmd)
 {
 	app::__TcpClient->begin(cmd);
 }
 
-void UBlueprintFunction::send_end(int32 cmd)
+void UBlueprintFunction::send_end()
 {
 	app::__TcpClient->end();
 }
@@ -156,30 +156,30 @@ void UBlueprintFunction::send_FRotator(FRotator value)
 	app::__TcpClient->sss(&value, sizeof(FRotator));
 }
 
-//·¢ËÍ×Ö·û´®
+//ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½
 void UBlueprintFunction::send_FString_len(FString value, int32 len)
 {
 	TCHAR *pdata = value.GetCharArray().GetData();
 	uint8* cc = (uint8*)TCHAR_TO_UTF8(pdata);
 
-	int size = value.GetCharArray().Num();//»ñÈ¡³¤¶È
-	if(size > len) size = len;//Èç¹û³¤¶È´óÓÚlen£¬ÉèÖÃÎªlen
-	app ::__TcpClient->sss(cc, size);//·¢ËÍÊý¾Ý
-	if(size <= len) return;//Èç¹ûÏàµÈ£¬Ö±½Ó·µ»Ø
+	int size = value.GetCharArray().Num();//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½
+	if(size > len) size = len;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È´ï¿½ï¿½ï¿½lenï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªlen
+	app ::__TcpClient->sss(cc, size);//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	if(size <= len) return;//ï¿½ï¿½ï¿½ï¿½ï¿½È£ï¿½Ö±ï¿½Ó·ï¿½ï¿½ï¿½
 
-	int a = size -len;//¼ÆËã²îÖµ
-	uint8* cc2 = (uint8*)FMemory::Malloc(a);//·ÖÅäÄÚ´æ
-	app::__TcpClient->sss(cc2, a);//·¢ËÍÊý¾Ý Õâ¾äÏë²»Ã÷°×
+	int a = size -len;//ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
+	uint8* cc2 = (uint8*)FMemory::Malloc(a);//ï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½
+	app::__TcpClient->sss(cc2, a);//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ë²»ï¿½ï¿½ï¿½ï¿½
 	
-	FMemory::Free(cc2);//ÊÍ·ÅÄÚ´æ
+	FMemory::Free(cc2);//ï¿½Í·ï¿½ï¿½Ú´ï¿½
 }
 
-//·¢ËÍ×Ö·û´®
+//ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½
 void UBlueprintFunction::send_FString(FString value)
 {
 	TCHAR *pdata = value.GetCharArray().GetData();
 	uint8* cc = (uint8*)TCHAR_TO_UTF8(pdata);
-	int size = value.GetCharArray().Num();//»ñÈ¡³¤¶È
-	app::__TcpClient->sss(size);//·¢ËÍ³¤¶È
-	app::__TcpClient->sss(cc, size);//·¢ËÍÊý¾Ý
+	int size = value.GetCharArray().Num();//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½
+	app::__TcpClient->sss(size);//ï¿½ï¿½ï¿½Í³ï¿½ï¿½ï¿½
+	app::__TcpClient->sss(cc, size);//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 }
