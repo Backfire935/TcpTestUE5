@@ -3,6 +3,7 @@
   <component name="Encoding" addBOMForNewFiles="with BOM under Windows, with no BOM otherwise">
     <file url="file://$PROJECT_DIR$/Source/Tcp_Test/IDefine.h" charset="GBK" />
     <file url="file://$PROJECT_DIR$/Source/Tcp_Test/TcpClient.cpp" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/Source/Tcp_Test/TcpClient_Funs.cpp" charset="GBK" />
     <file url="PROJECT" charset="GBK" />
   </component>
 </project>
