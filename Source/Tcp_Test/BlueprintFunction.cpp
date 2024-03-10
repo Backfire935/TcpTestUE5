@@ -104,7 +104,7 @@ FString UBlueprintFunction::read_FString()
 FPlayerBase UBlueprintFunction::read_FPlayerBase()
 {
 	FPlayerBase data;
-	app::__TcpClient->read(&data, 48);
+	app::__TcpClient->read(&data, 72);
 	
 	data.nick =  read_FString_len(20);//��ȡ�ַ���
 	return  data;
